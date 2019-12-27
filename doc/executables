@@ -1,0 +1,30 @@
+The standard Linux executable format is name ELF for Executable Linking Format.
+
+The ELF standard specifies multiple file formats:
+object files : .o (they make the compilation faster)
+executable files
+archive files : .a
+shared object files : .o
+
+
+Compiler toolchains generate and read ELF files
+
+Operating systems read and run ELF files
+
+It contains:
+- ELF header pointing to the position of the SHT and PHT
+- SHT, each has e_shnum section headers, pointing to a section
+- PHT, each has e_phnum program headers, pointing to a segment
+
+Loading process:
+1 - The elf header is parsed and the program header is parsed
+2 - The file is mapped in memory according to its segments
+3 - entry is called, syscalls are accessed
+
+Section exists before linking, in object files, one or mpre sections will be put inside one segment by the linker
+Is this section
+- raw data to be loaded into memory, .data .text etc
+- metadata, that will be used but disappear at runtime, .symtab, .srttab, .rela.text
+
+Segments exists after linking, in the executable file
+Contain information about how each section should be loaded into memory by the OS, notably location and permissions

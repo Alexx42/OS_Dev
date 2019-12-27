@@ -1,0 +1,51 @@
+		---------- KERNEL -------------
+
+
+- Kernel space :
+The kernel is found in an elevated system state, which includes a protected memory space and full access to the device's hardware. This system state and memory space is altogether referred to as kernel-space. Within kernel-space the core access to the hardware and system services are managed and provided as a service to the rest of the system.
+
+Linux kernel is a monolithic computer operating system kernel.
+The monolithic kernel, unlike the microkernel, not only encompasses the CPU, memory and IPC, but also has device drives, system server calls and file system management.They are best at communicating with hardware and performing serveral tasks simultaneously.
+
+
+The kernel can manage the system's hardware through what is referred to as interrupts. When the hardware wants to interface with the system, an interrupt is issued that interrupts the processor that in turn does the same to the kernel. To provide synchro, the kernel can disable interrupts.
+In Linux, the interrupt handlers do not run in a process context, they instead run in an interrupt context not associated with any process. This particular interrupt context exists solely to let an interrupt handler quickly respond to an individual interrupt and then finally exit.
+
+		------ ARCHITECTURE ------
+
+A kernel is simply a resource manager. The Linux kernel exists in the kernel space, below the userspace, which is where the user's applications are executed. For the user space to communicate with the kernel space, a GNU C Library is incorportatedwhich provides a forum for the system call interface to connect to the kernel space and allow transition back to the userspace.
+
+The linux kernel can be categorized into three primary levels : 
+1 - The system call interface: this is the topmost and undertakes the basic actions such as read and write.
+2 - The kernel code : is located below the system call interface, it is common to all of the processor architectures supported by Linux, it is sometimes defined as architecture-independant kernel code.
+3 - The architecture-dependent code: it is under the architecture-independent code, forms what is usually referred to as Board Support Package (BSP) - this contains a small program called the bootloader that places the OS and device drivers into memory.
+
+
+1 - System call interface: is a thin layer that is used to undertake function calls from user space into the kernel. This interface may be architecture dependent.
+
+2 - Process management: is mainly there to execute the processes. There are referred to as the thread in a kernel and are representing an individual virtualization of the particular processor.
+
+3 - Memory management: memory is managed in what are known as pages for efficiency. Linux includes the methods in which to manage the available memory as well as the hardware mechanisms for physical and virtual mappings. Swap space is also provided. 
+
+Swap : It's a space on a disk that is used when the amount of physical RAM memory is full. When a Linux system runs out of RAM, inactive pages are moved from the RAM to the swap space.
+
+Swap space can take the form of either a dedicated swap partition or a swap file. In most cases when runnin Linux on a virtual machine, a swap partition is not present so our only option is to create a swap file.
+
+4 - Virtual file system: it provides a standard interface abstraction for the file systems. It provides a switching layer between the system call interface and the file systems supported by the kernel.
+
+5 - Network stack: is designed as a layered architecture modeled after the particular protocols.
+
+6 - Device drivers: a significant part of the source code in the Linux kernel is found in the device drives that make a particular hardware device usable.
+
+7 - Architecture-dependent code: those elements that depend on the architecture on which they run, hence must conider the architectural design for normal operation and efficency. 
+
+
+
+		---------- INTERFACES -------------
+
+
+1) System calls and interrupts
+Applications pass information to the kernel through system calls. A library contains functions that the applications work with. The libraries then, through the system call interface, instruct the kernel to perform a task that the application wants.
+
+Interrupts offer a way through which the Linux kernel manages the system's hardware. If hardware has to communicate with a system, an interrupt on the processor does the trick, and this is passed on to the Linux kernel. 
+
