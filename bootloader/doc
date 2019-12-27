@@ -1,0 +1,6 @@
+			------ BOOTLOADER ------
+
+
+The bootloader is located in the first sector of a hard drive, where system booting starts. This is the place where BIOS comes in, when a machine is powered up, it reads the data contained in the first sector and processes it to the system memory.
+
+A processor functions in the 16-bit real mode, which has certain limitations, and in the 32-bit safe mode with the full available functionality. On the start, a processor operates, so we need a compiler and a linker working in the 16-bit mode.
