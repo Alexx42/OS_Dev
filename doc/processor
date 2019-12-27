@@ -1,5 +1,30 @@
 		------- x86 Processors ---------
 
+CPU is where calculations and logic operations all take place.
+It contains a finite number of storage locations, or registers, a high-frequency clock, like a control unit, and an arithmetic logic unit.
 
+The clock synchronizes the internal operations of the CPU with other components in the system
+The control unit (CU) arranges the sequencing of steps involved in executing system instructions
+The ALU performs arithmetic operations such as addition, AND...
+
+CPU is connected to the rest of the computers via pins attached to the CPU socket in the computer's motherboard.
+Most of the pins are connected to the data bus, the control bus and the caddress bus.
+The memory storage unit is where instructions and data are temporarily stored while a computer program is running. 
+The storage unit receives a request for data from the CPU, then transfers all data stored from RAM to the CPU, and finally transfers data from the CPU into memory. All the processing of data takes place within the CPU.
+
+A bus is a group of parralele wires that transfer dat from one part of the computer to another. There are four bus types : 
+- data : transfer instructions and data between CPU and memory
+- I/O : transfer data between the CPU and the devices that have I/O
+- control : utilizes binary signals to synchronize actions of any device that is connected to the system bus
+- address: holds the addresses of instructions and data when the currently executing instructions transfer data between the CPU and memory.
+
+The execution of a single machine instruction can be separated into a sequence of individual operations called the instruction execution cycle.
+First the program is loaded into memory. The instruction pointer contains the address of the next instruction to be executed.
+When executing a machine's instructions, three basic steps are required
+- fetch : The CU fetches the next execution from the instruction and increments the instruction pointer (IP), known as the program counter (PC)
+- decode : The CU decodes the instruction's function to determine what the instruction will do. The input operands are passed to the ALU, and signals are sent to the LAU indicating the operation to be performed. 
+- fetch operands: if the instruction uses an input operand located in memory, the CU uses a read operation to retrieve the operand and copy it into internal registers.
+- execute : the ALU executes the instruction using the named registers and internal registers as operands and sends the output to named registers and/or memory. 
+- store : if the output operand is in the memory, the CU uses the write operation to store the data.
 
 
