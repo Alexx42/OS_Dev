@@ -11,7 +11,8 @@ void CDisplay::TextOut(
 {
 	byte textAttribute = ((inTextColor) | (inBackgroundColor << 4));
 	byte lengthOfString = CString::Strlen(inStrSource);
-	__asm__ (
+	__asm__ volatile (
+		".intel_syntax\n"
 		"push bp"
 		"mov al, inUpdateCursor"
 		"xor bh, bh"
@@ -30,7 +31,8 @@ void CDisplay::TextOut(
 
 void CDisplay::ClearScreen()
 {
-	__asm__ (
+	__asm__ volatile(
+		".intel_syntax\n"
 		"mov al, 02h"
 		"mov ah, 00h"
 		"int 10h"
@@ -42,7 +44,8 @@ void CDisplay::ShowCursor(
 		)
 {
 	byte flag = inMode ? 0 : 0x32;
-	__asm (
+	__asm__ volatile(
+		".intel_syntax\n"
 		"mov ch, flag"
 		"mov cl, 0Ah"
 		"mov ah, 01h"
