@@ -1,0 +1,25 @@
+		----- BOOT -----
+
+We need to declare constants for the multiboot header defined in the multiboot standard for the bootloader to recognize the multiboot.
+The bootloader will search for this signature in the first 8KiB of the kernel filem aligned at a 32-bit boundary.
+The signature is in its own section so the header can be forced to be within the first 8KiB of the kernel file.
+
+
+The multiboot standard does not define the value of the stack pointer register (esp) and it is up to the kernel to provide a stack.
+The stack on x86 processors, need to be 16-byte aligned. Failure to align the stack will result in undefined behavior. 
+
+The linker script specifies _start as the entry point to the kernel and the bootloader will jump to this position once the kernel has been loaded.
+
+The bootloader has loaded us into 32-bit protected mode on a x86 machine. Interrupts are disable. Paging is disabled. The processor state is as defined in the multiboot standard. The kernel has full control of the CPU. The kernel can only make use of hardware features and any code it provides as a part of itself.
+There is no printf function, unless the kernel provides its own stdio.h header and a printf implementation. There are no security restrictions, no safeguards, no debugging mechanisms, only what the kernel provides itself. It has absolute and complete power over the machine.
+
+To set up a stack, we set the esp register to point to the top of the stack.
+
+This is a good place to initialize crucial processor state before the high=lebel kernel is entered. It's best to minimize the early environment where crucial features are offline. THE GDT should be loaded. 
+
+The ABI requires the stack if 16-byte aligned at the time of the call instruction.
+
+If the system has nothing more to do, put the computer into an infinite loop. To do that :
+	1) Disable interrupts with cli
+	2) Wait for the next interrupt to arrive with hlt
+	3) jump to the hlt instruction 
