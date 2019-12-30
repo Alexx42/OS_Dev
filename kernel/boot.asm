@@ -1,7 +1,8 @@
 ; Declare constants for the multiboot header
 MBALIGN equ	1 << 0		; align loaded modules on page boundaries
 MEMINFO equ	1 << 1		; provide memory map
-FLAGS	equ	1 << 2		; multiboot 'flag' field
+VIDINFO equ	1 << 2
+FLAGS	equ	MBALIGN | MEMINFO | VIDINFO		; multiboot 'flag' field
 MAGIC	equ	0x1BADB002	; magic number
 CHECKSUM	equ	-(MAGIC + FLAGS) ; checksum of above to prove we are MB
 
@@ -12,6 +13,7 @@ align 4
 	dd MAGIC
 	dd FLAGS
 	dd CHECKSUM
+	dd VIDINFO
 
 section .bss
 align 16
