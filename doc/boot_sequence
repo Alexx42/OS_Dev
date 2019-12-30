@@ -20,5 +20,4 @@ The CPU is currently in Real Mode.
 
 
 Finally, the bootloader loads the kernel into memory and passes control to it.
-
-
+The bootloader searches for magical values, in the multiboot header
