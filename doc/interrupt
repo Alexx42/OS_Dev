@@ -1,5 +1,0 @@
-int 10h, function 00h - this function changes the video mode and thus clears the screen
-
-int 10h, function 01h, we use this function to set the type of the cursor
-
-int 10h, function 13h - this function concludes the whole routine by displaying a string of text on the screen
