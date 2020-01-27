@@ -1,0 +1,17 @@
+	------- CONSTRUCTOR -------
+
+
+Follow the System V ABI used by gcc
+
+When gcc is going to compile, it's gonna use 5 different object files that together handle the program initialization.
+- crt0.o
+- crti.o
+- crtbegin.o
+- crtend.o
+- crtn.o
+These object files implement two sepcial functions:
+- _init : runs global constructor and other initialization tasks
+- _fini : runs global destructors and other terminations tasks. 
+
+crtbegin.o and crtend.o contain the internals that the compiler wishes to hide from us but wants us to use.
+crt0.o contains the program entry point (_start) and calls the special _init function that runs the program initialization tasks.
